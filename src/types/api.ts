@@ -1,5 +1,3 @@
-import { Entry } from "contentful";
-
 export interface IQuestion {
   id: string;
   questionText: string;

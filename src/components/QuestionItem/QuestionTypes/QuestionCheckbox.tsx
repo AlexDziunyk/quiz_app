@@ -1,34 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IQuestion } from "../../../types/api";
-import { Checkbox } from "@mantine/core";
+import { Checkbox, Stack, Title } from "@mantine/core";
+import { useQuiz } from "../../../context/QuizContext";
 
 interface QuestionCheckboxProps {
+  id: string;
   data: IQuestion;
 }
 
-const QuestionCheckbox = ({ data }: QuestionCheckboxProps) => {
+const QuestionCheckbox = ({ data, id }: QuestionCheckboxProps) => {
+  const { answers, setAnswers } = useQuiz();
   const [options, setOptions] = useState<string[]>([]);
 
   const handleCheckboxChange = (value: string) => {
-    if (options.includes(value)) {
-      setOptions((prev) => prev.filter((item) => item !== value));
-      return;
-    }
-    setOptions((prev) => [...prev, value]);
+    const currentOptions = options.includes(value)
+      ? options.filter((item) => item !== value)
+      : [...options, value];
+
+    setOptions(currentOptions);
+    setAnswers((prev) => ({ ...prev, [id]: currentOptions }));
   };
+
+  useEffect(() => {
+    if (answers) {
+      setOptions(answers[id] ?? []);
+    }
+  }, []);
 
   return (
     <div>
-      <h2>{data.questionText}</h2>
-      <div>
-        {data.possibleAnswers.map((item) => (
+      <Title my={"sm"} order={2}>
+        {data.questionText}
+      </Title>
+      <Stack gap={"sm"}>
+        {data.possibleAnswers.map((item, index) => (
           <Checkbox
+            key={index}
             label={item}
             value={item}
+            checked={options.includes(item)}
             onChange={(e) => handleCheckboxChange(e.target.value)}
           />
         ))}
-      </div>
+      </Stack>
     </div>
   );
 };

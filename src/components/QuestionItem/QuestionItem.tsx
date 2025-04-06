@@ -1,5 +1,6 @@
 import { IAnswerType, IQuestion } from "../../types/api";
 import QuestionCheckbox from "./QuestionTypes/QuestionCheckbox";
+import QuestionTrueFalse from "./QuestionTypes/QuestionTrueFalse";
 
 interface QuestionItemProps {
   data: IQuestion;
@@ -8,11 +9,12 @@ interface QuestionItemProps {
 const QuestionItem = ({ data }: QuestionItemProps) => {
   return (
     <div>
-      <div>
-        {data.questionType === IAnswerType.MULTIPLE_CHOICE && (
-          <QuestionCheckbox data={data} />
-        )}
-      </div>
+      {data.questionType === IAnswerType.MULTIPLE_CHOICE && (
+        <QuestionCheckbox data={data} />
+      )}
+      {data.questionType === IAnswerType.TRUE_FALSE && (
+        <QuestionTrueFalse data={data} />
+      )}
     </div>
   );
 };
