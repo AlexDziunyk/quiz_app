@@ -3,6 +3,7 @@ export interface IQuestion {
   questionText: string;
   questionType: IAnswerType;
   possibleAnswers: string[];
+  correctAnswer: string[];
 }
 
 export enum IAnswerType {
@@ -18,7 +19,18 @@ export interface IStep {
   questions: IQuestion[];
 }
 
+export interface IAnswer {
+  [questionId: string]: string[];
+}
+
 export interface IQuestionFields {
   contentTypeId: string;
   fields: IQuestion;
+}
+
+export interface IArticle {
+  objectID: string;
+  title: string;
+  description: string;
+  url: string;
 }

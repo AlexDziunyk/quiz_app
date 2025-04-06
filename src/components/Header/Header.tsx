@@ -19,7 +19,7 @@ const Header = ({ page, pageLength }: HeaderProps) => {
           </Text>
           <Text>{value}%</Text>
         </Group>
-        <Progress color="green" value={value} />
+        <Progress color="yellow" animated value={value} />
       </Stack>
     </div>
   );

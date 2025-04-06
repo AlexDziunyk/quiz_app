@@ -1,15 +1,11 @@
 import { createContext, useContext, useState } from "react";
-import { IStep } from "../types/api";
+import { IAnswer, IStep } from "../types/api";
 
 interface QuizContextType {
   userData: any;
   setUserData: React.Dispatch<React.SetStateAction<any>>;
-  answers: { [questionId: string]: string[] };
-  setAnswers: React.Dispatch<
-    React.SetStateAction<{
-      [questionId: string]: string[];
-    }>
-  >;
+  answers: IAnswer;
+  setAnswers: React.Dispatch<React.SetStateAction<IAnswer>>;
 }
 
 const QuizContext = createContext<QuizContextType | null>(null);
@@ -20,9 +16,7 @@ export default function QuizProvider({
   children: React.ReactNode;
 }) {
   const [userData, setUserData] = useState<IStep[]>([]);
-  const [answers, setAnswers] = useState<{
-    [questionId: string]: string[];
-  }>({});
+  const [answers, setAnswers] = useState<IAnswer>({});
 
   return (
     <QuizContext.Provider

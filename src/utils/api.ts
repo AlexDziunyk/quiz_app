@@ -31,6 +31,7 @@ export const fetchSteps = async (): Promise<IStep[]> => {
         questionText: q.fields.questionText,
         questionType: q.fields.questionType,
         possibleAnswers: q.fields.possibleAnswers || [],
+        correctAnswer: q.fields.correctAnswer,
       }));
 
       const ordered: any = (questionsOrder as any)

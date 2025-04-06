@@ -13,6 +13,7 @@
   "dependencies": {
     "@mantine/core": "^7.17.3",
     "@mantine/hooks": "^7.17.3",
+    "algoliasearch": "^5.23.2",
     "axios": "^1.8.4",
     "contentful": "^11.5.13",
     "contentful-management": "^11.52.0",
