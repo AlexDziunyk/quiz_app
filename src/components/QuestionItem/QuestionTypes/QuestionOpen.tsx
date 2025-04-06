@@ -4,22 +4,21 @@ import { useEffect, useState } from "react";
 import { useQuiz } from "../../../context/QuizContext";
 
 interface QuestionScaleProps {
-  id: string;
   data: IQuestion;
 }
 
-const QuestionOpen = ({ id, data }: QuestionScaleProps) => {
+const QuestionOpen = ({ data }: QuestionScaleProps) => {
   const { answers, setAnswers } = useQuiz();
   const [option, setOption] = useState<string>("");
 
   const handleInputChange = (value: string) => {
     setOption(value);
-    setAnswers((prev) => ({ ...prev, [id]: [value] }));
+    setAnswers((prev) => ({ ...prev, [data.id]: [value] }));
   };
 
   useEffect(() => {
-    if (answers && answers[id]) {
-      setOption(answers[id][0] ?? "");
+    if (answers && answers[data.id]) {
+      setOption(answers[data.id][0] ?? "");
     }
   }, []);
 

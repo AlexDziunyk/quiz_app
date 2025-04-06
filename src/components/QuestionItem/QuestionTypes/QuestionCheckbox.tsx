@@ -4,11 +4,10 @@ import { Checkbox, Stack, Title } from "@mantine/core";
 import { useQuiz } from "../../../context/QuizContext";
 
 interface QuestionCheckboxProps {
-  id: string;
   data: IQuestion;
 }
 
-const QuestionCheckbox = ({ data, id }: QuestionCheckboxProps) => {
+const QuestionCheckbox = ({ data }: QuestionCheckboxProps) => {
   const { answers, setAnswers } = useQuiz();
   const [options, setOptions] = useState<string[]>([]);
 
@@ -18,12 +17,12 @@ const QuestionCheckbox = ({ data, id }: QuestionCheckboxProps) => {
       : [...options, value];
 
     setOptions(currentOptions);
-    setAnswers((prev) => ({ ...prev, [id]: currentOptions }));
+    setAnswers((prev) => ({ ...prev, [data.id]: currentOptions }));
   };
 
   useEffect(() => {
     if (answers) {
-      setOptions(answers[id] ?? []);
+      setOptions(answers[data.id] ?? []);
     }
   }, []);
 

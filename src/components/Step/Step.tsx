@@ -14,13 +14,13 @@ const Step = ({ data }: StepProps) => {
       {data.map((item) => (
         <div key={item.id}>
           {item.questionType === IAnswerType.MULTIPLE_CHOICE && (
-            <QuestionCheckbox id={item.id} data={item} />
+            <QuestionCheckbox data={item} />
           )}
           {item.questionType === IAnswerType.TRUE_FALSE && (
-            <QuestionTrueFalse id={item.id} data={item} />
+            <QuestionTrueFalse data={item} />
           )}
           {item.questionType === IAnswerType.OPEN_ENDED && (
-            <QuestionOpen id={item.id} data={item} />
+            <QuestionOpen data={item} />
           )}
         </div>
       ))}
